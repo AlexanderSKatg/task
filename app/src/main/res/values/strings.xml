@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Jetruby</string>
+    <string name="pull_down_to_update">Pull down to update</string>
+</resources>

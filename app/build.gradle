@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.sk4atg89.alexander.jetruby"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"https://api.dribbble.com/v1/\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def tree = fileTree(dir: 'dependencies', include: '**/*.gradle')
+    tree.each {
+        File file -> apply from: file, to: dependencies
+    }
+
+    testImplementation 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:3.4.2'
+    testCompile 'org.mockito:mockito-core:2.10.0'
+    testImplementation "org.powermock:powermock-module-junit4:1.7.0RC4"
+    testImplementation "org.powermock:powermock-api-mockito2:1.7.0RC4"
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
