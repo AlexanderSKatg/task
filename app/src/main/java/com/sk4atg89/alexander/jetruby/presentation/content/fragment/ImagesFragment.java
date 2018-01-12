@@ -44,7 +44,6 @@ public class ImagesFragment extends BaseFragment implements ImagesContract.View 
         mPresenter.attachView(this);
         mPresenter.getImages(0);
         mBinding.swipeRefreshLayout.setOnRefreshListener(() -> {
-            mPresenter.reset();
             mPresenter.getImages(0);
             mAdapter.resetPage();
         });
